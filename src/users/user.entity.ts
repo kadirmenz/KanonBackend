@@ -22,8 +22,4 @@ export class User {
   @Column('text', { nullable: true })
   favoriteGames: string;
 
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
-  }
 }

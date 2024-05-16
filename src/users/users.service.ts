@@ -15,7 +15,7 @@ export class UsersService {
     const newUser = this.usersRepository.create({
       username,
       email,
-      password: await bcrypt.hash(password, 10),
+      password,
       coins: 20,
       favoriteGames: JSON.stringify([]),
     });
