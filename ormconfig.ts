@@ -12,9 +12,6 @@ const ormconfig: TypeOrmModuleOptions = {
   database: process.env.DB_DATABASE,
   entities: [User],
   synchronize: true,
-  extra: {
-    authPlugin: 'mysql_native_password'
-  }
 };
 
 export default ormconfig;
