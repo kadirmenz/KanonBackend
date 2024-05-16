@@ -1,5 +1,5 @@
 import { Entity, Unique, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, BeforeInsert } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 
 @Entity()
 @Unique(['email'])
