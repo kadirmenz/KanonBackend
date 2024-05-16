@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, BadRequestException, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/user.entity';
@@ -43,6 +43,7 @@ export class AuthService {
   }
 
   async register(username: string, email: string, password: string): Promise<{ username: string; access_token: string; coins: number;}> {
+    Logger.log(password+" is password")
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await this.usersService.createUser(username, email, hashedPassword);
     const payload = { email: newUser.email, sub: newUser.id };
