@@ -1,4 +1,5 @@
-import { Entity, Unique, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Unique, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, BeforeInsert } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Entity()
 @Unique(['email'])
@@ -20,4 +21,9 @@ export class User {
 
   @Column('text', { nullable: true })
   favoriteGames: string;
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
 }
